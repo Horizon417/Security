@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN</title>
+</head>
+<body>
+<div>
+
+        <h1 th:text="Adminitstration"></h1>
+
+</div>
+
+<form action="/admin/users">
+    <input type="submit" value="View list of users">
+</form>
+
+<br>
+
+<form action="/userInfo">
+    <input type="submit" value="View Info">
+</form>
+
+<br>
+
+
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="logout"/>
+</form>
+
+</body>
+</html>

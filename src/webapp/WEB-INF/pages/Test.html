@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testpage</title>
+</head>
+<body>
+
+<th:block th:each="user : ${testList}">
+    <h1 th:text="${user.getId()}"></h1>
+    <h1 th:text="${user.getName()}"></h1>
+    <h1 th:text="${user.getRoles()}"></h1>
+
+</th:block>
+
+
+</tr>
+
+</body>
+</html>

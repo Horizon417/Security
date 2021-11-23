@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
 <head>
     <meta charset="UTF-8">
     <title>Create User</title>
 </head>
 <body>
-<form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
+<form action="#" th:action="@{/admin/user-create}" th:object="${user}" method="post">
+    <label for="name">name</label> <br>
+    <input type="text" th:field="*{name}" id="name" placeholder="name"><br>
 
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
 
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
 
+    <label for="password">password</label><br>
+    <input type="text" th:field="*{password}" id="password" placeholder="password"><br>
+    <p>
+
+    </p>
+
+<!--    <select name="roles" multiple><br>-->
+<!--        <option th:each="roles : ${T(web.model.Role).values()}"-->
+<!--                th:value="${roles}" th:text="${roles}"></option><br>-->
+<!--    </select>-->
+
+
+
+        <ul>
+            <li th:each="feat : ${T(web.model.Role).values()}">
+                <input type="checkbox" th:field="*{roles}" th:value="${feat}"
+                th:text="${feat.name()}"/>
+
+            </li>
+        </ul>
+
+    <p>
+
+    </p>
     <input type="submit" value="Create User">
 
+</form>
+<p>
+
+</p>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="logout"/>
 </form>
 
 </body>

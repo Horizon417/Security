@@ -1,24 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Update User</title>
 </head>
 <body>
-<form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
+<form action="#" th:action="@{/admin/user-update}" th:object="${user}" method="post">
     <label for="id">ID</label>
     <input readonly type="text" th:field="*{id}" id="id" placeholder="ID">
 
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
+    <label for="name">name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
 
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+    <label for="password">password</label>
+    <input type="text" th:field="*{password}" id="password" placeholder="password">
 
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
+<!--    <select name="roles" multiple>-->
+<!--        &lt;!&ndash;        <option th:each="roles : ${T(com.baeldung.thymeleaf.model.Color).values()}"&ndash;&gt;-->
+<!--        <option th:each="roles : ${T(web.model.Role).values()}"-->
+<!--                th:value="${roles}" th:text="${roles}"></option>-->
+<!--    </select>-->
+
+    <ul>
+        <li th:each="feat : ${T(web.model.Role).values()}">
+            <input type="checkbox" th:field="*{roles}" th:value="${feat}"
+                   th:text="${feat.name()}"/>
+
+        </li>
+    </ul>
+
+
+
+<!--    <label for="email">Email</label>-->
+<!--    <input type="text" th:field="*{email}" id="email" placeholder="Email">-->
 
     <input type="submit" value="Update User">
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="logout"/>
+    </form>
 
 </form>
 </body>

@@ -12,4 +12,5 @@ public interface UserDao {
    List<User> listUsers();
    void delete(Long id);
    void update(User user);
+   User getUserByName(String name);
 }

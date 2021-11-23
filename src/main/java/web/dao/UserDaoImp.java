@@ -13,33 +13,40 @@ import java.util.List;
 @Transactional
 public class UserDaoImp implements UserDao {
 
-   @PersistenceContext
-   EntityManager entityManager;
+    @PersistenceContext
+    EntityManager entityManager;
 
    @Override
    public void add(User user) {
       entityManager.persist(user);
    }
 
-   @Override
-   public User getById(Long id) {
-      return entityManager.find(User.class, id);
-   }
+    @Override
+    public User getById(Long id) {
+        return entityManager.find(User.class, id);
+    }
 
-   @Override
-   public List<User> listUsers() {
-      return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
-   }
+    @Override
+    public List<User> listUsers() {
+        return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
+    }
 
-   @Override
-   public void delete(Long id) {
-      User deleting = entityManager.find(User.class, id);
-      entityManager.remove(deleting);
-   }
+    @Override
+    public void delete(Long id) {
+        User deleting = entityManager.find(User.class, id);
+        entityManager.remove(deleting);
+    }
 
-   @Override
-   public void update(User user) {
-      entityManager.merge(user);
-   }
+    @Override
+    public void update(User user) {
+        entityManager.merge(user);
+    }
 
+    @Override
+    public User getUserByName(String name) {
+        User singleResult = entityManager.createQuery("SELECT u FROM User u WHERE u.name = :name", User.class)
+                .setParameter("name", name)
+                .getSingleResult();
+        return singleResult;
+    }
 }

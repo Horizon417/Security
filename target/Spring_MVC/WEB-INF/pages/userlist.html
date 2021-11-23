@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
@@ -11,8 +13,8 @@
     <tr>
         <th> ID </th>
         <th> Name </th>
-        <th> Last Name </th>
-        <th> Email </th>
+        <th> Password </th>
+        <th> Roles </th>
     </tr>
     </thead>
     <tbody>
@@ -21,17 +23,26 @@
     </tr>
     <tr th:each="user : ${userList}">
         <td><span th:text="${user.id}"> ID </span></td>
-        <td><span th:text="${user.firstName}"> Name </span></td>
-        <td><span th:text="${user.lastName}"> Last Name </span></td>
-        <td><span th:text="${user.email}"> Email </span></td>
+        <td><span th:text="${user.name}"> Name </span></td>
+        <td><span th:text="${user.password}"> Password </span></td>
+        <td><span th:text="${user.roles}"> Roles </span></td>
         <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
         <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
     </tr>
     </tbody>
 </table>
 
-<form action="/user-create">
+<br>
+
+<!--<form action="/admin/user-create">-->
+<form th:action="@{user-create.html}">
     <input type="submit" value="Create new User">
+</form>
+
+<br>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="logout"/>
 </form>
 
 
